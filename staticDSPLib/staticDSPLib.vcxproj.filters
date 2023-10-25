@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DSPEssentials">
+      <UniqueIdentifier>{2c3468c3-8720-4785-bf4b-a3dd88ec1344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DSPLib">
+      <UniqueIdentifier>{81f36250-692b-4ab4-8dfe-b236b2577e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileSys">
+      <UniqueIdentifier>{a2e90487-bad1-4a92-aecd-d1163eb5e3c7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DSPEssentials.h">
+      <Filter>DSPEssentials</Filter>
+    </ClInclude>
+    <ClInclude Include="DSPLib.h">
+      <Filter>DSPLib</Filter>
+    </ClInclude>
+    <ClInclude Include="fileSys.h">
+      <Filter>FileSys</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DSPLib.c">
+      <Filter>DSPLib</Filter>
+    </ClCompile>
+    <ClCompile Include="tester_MAIN.c" />
+    <ClCompile Include="fileSys.c">
+      <Filter>FileSys</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

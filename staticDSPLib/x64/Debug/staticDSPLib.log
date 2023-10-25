@@ -1,0 +1,4 @@
+﻿  tester_MAIN.c
+C:\Users\PC\source\repos\staticDSPLib\staticDSPLib\tester_MAIN.c(28,15): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[4]'
+C:\Users\PC\source\repos\staticDSPLib\staticDSPLib\tester_MAIN.c(28,15): warning C4024: 'DFTByDef': different types for formal and actual parameter 1
+  staticDSPLib.vcxproj -> C:\Users\PC\source\repos\staticDSPLib\x64\Debug\staticDSPLib.exe
