@@ -129,11 +129,9 @@
   <ItemGroup>
     <ClInclude Include="DSPEssentials.h" />
     <ClInclude Include="DSPLib.h" />
-    <ClInclude Include="fileSys.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DSPLib.c" />
-    <ClCompile Include="fileSys.c" />
     <ClCompile Include="tester_MAIN.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

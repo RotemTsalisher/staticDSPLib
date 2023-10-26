@@ -39,3 +39,36 @@ complex* DFTByDef(complex x[], int N)
 	}
 	return y;
 }
+complex* radix2FFT(complex x[], int N)
+{
+	int stages, pointsPerStage, curStage, butterfliesPerStage,i;
+	complex *y, *WLUT;
+
+	stages = log2(N);
+	y = bitReversal(y, N);
+}
+complex* bitReversal(complex* y, int N)
+{
+
+}
+complex* twiddleFactorLUT(int N, int stages)
+{
+	int wlutSize, i;
+	float baseAngle, angle;
+	complex* WLUT;
+
+	wlutSize = stages + 1;
+	baseAngle = (2 * PI) / N;
+	WLUT = malloc(sizeof(complex) * wlutSize);
+
+	WLUT[i].real = 1;
+	WLUT[i].img = 0;
+
+	for (i = 1; i < wlutSize; i++)
+	{
+		angle = baseAngle * i;
+		WLUT[i].real = cos(angle);
+		WLUT[i].img = sin(angle);
+	}
+	return WLUT;
+}

@@ -9,3 +9,18 @@
  * twiddle factor raised to n power (multiply the base angle), and input samples.
  * -------------------- -------- -------------------- */
 complex* DFTByDef(complex x[], int N);
+/* -------------------- radix2FFT -------------------
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * -------------------- -------- -------------------- */
+complex* radix2FFT(complex x[], int N);
+
+
+complex* twiddleFactorLUT(int N, int stages);
+
+
+complex* bitReversal(complex* y, int N);

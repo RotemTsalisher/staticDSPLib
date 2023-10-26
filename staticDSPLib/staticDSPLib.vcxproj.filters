@@ -7,9 +7,6 @@
     <Filter Include="DSPLib">
       <UniqueIdentifier>{81f36250-692b-4ab4-8dfe-b236b2577e43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FileSys">
-      <UniqueIdentifier>{a2e90487-bad1-4a92-aecd-d1163eb5e3c7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DSPEssentials.h">
@@ -18,17 +15,11 @@
     <ClInclude Include="DSPLib.h">
       <Filter>DSPLib</Filter>
     </ClInclude>
-    <ClInclude Include="fileSys.h">
-      <Filter>FileSys</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DSPLib.c">
       <Filter>DSPLib</Filter>
     </ClCompile>
     <ClCompile Include="tester_MAIN.c" />
-    <ClCompile Include="fileSys.c">
-      <Filter>FileSys</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
