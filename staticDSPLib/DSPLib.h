@@ -1,4 +1,5 @@
 #pragma once
+#include "string.h"
 
 /* -------------------- DFTByDef --------------------
  * DFTByDef will apply the DFT computations by definition
@@ -20,7 +21,10 @@ complex* DFTByDef(complex x[], int N);
 complex* radix2FFT(complex x[], int N);
 
 
-complex* twiddleFactorLUT(int N, int stages);
+complex* twiddleFactorLUT(complex* WLUT, int N);
 
 
-complex* bitReversal(complex* y, int N);
+void bitReversal(complex* y, int N);
+
+
+complex* initOutputArray(complex* y, complex* x, int N);

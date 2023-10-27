@@ -41,34 +41,96 @@ complex* DFTByDef(complex x[], int N)
 }
 complex* radix2FFT(complex x[], int N)
 {
-	int stages, pointsPerStage, curStage, butterfliesPerStage,i;
+	int stages, pointsPerSubDFT, butterfliesPerSubDFT, curStage, j, i,k,amountOfSubDFTs,a,twiddleIdx;
 	complex *y, *WLUT;
+	complex tmp;
+	
+	y = NULL;
+	WLUT = NULL;
 
+	y = initOutputArray(y, x, N); //  copy input array to output array and apply bit reversal 
 	stages = log2(N);
-	y = bitReversal(y, N);
-}
-complex* bitReversal(complex* y, int N)
-{
+	amountOfSubDFTs = N >> 1;
+	WLUT = twiddleFactorLUT(WLUT, N);
 
+	for (curStage = 1; curStage <= stages; curStage++)
+	{
+		pointsPerSubDFT = 1 << curStage;
+		butterfliesPerSubDFT = pointsPerSubDFT >> 1;
+		a = 0; // twiddle idx multiplier
+		for (j = 0; j < N; j += pointsPerSubDFT) // go over sub DFT units
+		{
+			for (i = j; i < (j + butterfliesPerSubDFT); i++) // calc butterflies for each sub DFT
+			{
+				twiddleIdx = (a * amountOfSubDFTs);
+				k = i + butterfliesPerSubDFT;
+				tmp = y[i];
+				y[i].real += y[k].real * WLUT[twiddleIdx].real - y[k].img * WLUT[twiddleIdx].img;
+				y[i].img += y[k].real * WLUT[twiddleIdx].img + y[k].img * WLUT[twiddleIdx].real;
+
+				y[k].real = tmp.real - y[k].real;
+				y[k].img = tmp.img - y[k].img;
+				a++;
+			}
+			a = 0;
+		}
+		amountOfSubDFTs = amountOfSubDFTs >> 1;
+	}
+	return y;
 }
-complex* twiddleFactorLUT(int N, int stages)
+void bitReversal(complex* y, int N)
+{
+	int i, j, k;
+	complex tmp;
+
+	j = 0;
+	i = 1;
+	k = N / 2;
+
+	for (; i < N - 1; i++)
+	{
+		k = N / 2;
+		while (k <= j)
+		{
+			j -= k;
+			k = k>> 1;
+		}
+		j += k;
+		if (i < j)
+		{
+			tmp = y[i];
+			y[i] = y[j];
+			y[j] = tmp;
+		}
+	}
+}
+complex* twiddleFactorLUT(complex* WLUT, int N)
 {
 	int wlutSize, i;
-	float baseAngle, angle;
-	complex* WLUT;
+	float baseAngle, angle, thresh,tmp;
 
-	wlutSize = stages + 1;
+	thresh = 0.25*pow(10, -5);
+	wlutSize = N;
 	baseAngle = (2 * PI) / N;
 	WLUT = malloc(sizeof(complex) * wlutSize);
 
-	WLUT[i].real = 1;
-	WLUT[i].img = 0;
+	WLUT[0].real = 1;
+	WLUT[0].img = 0;
 
 	for (i = 1; i < wlutSize; i++)
 	{
 		angle = baseAngle * i;
-		WLUT[i].real = cos(angle);
-		WLUT[i].img = sin(angle);
+		tmp = cos(angle);
+		WLUT[i].real = (tmp < thresh) ? 0 : tmp;
+		tmp = sin(angle);
+		WLUT[i].img = (tmp < thresh) ? 0 : tmp;
 	}
 	return WLUT;
+}
+complex* initOutputArray(complex* y,complex* x, int N)
+{
+	y = malloc(sizeof(complex) * N);
+	memcpy(y, x, N * sizeof(complex));
+	bitReversal(y, N);
+	return y; ;
 }
