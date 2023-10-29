@@ -60,19 +60,21 @@ complex* radix2FFT(complex x[], int N)
 		a = 0; // twiddle idx multiplier
 		for (j = 0; j < N; j += pointsPerSubDFT) // go over sub DFT units
 		{
+			twiddleIdx = 0;
 			for (i = j; i < (j + butterfliesPerSubDFT); i++) // calc butterflies for each sub DFT
 			{
-				twiddleIdx = (a * amountOfSubDFTs);
+				if (curStage == 2)
+				{
+					a = a; //debugging
+				}
 				k = i + butterfliesPerSubDFT;
 				tmp = y[i];
-				y[i].real += y[k].real * WLUT[twiddleIdx].real - y[k].img * WLUT[twiddleIdx].img;
-				y[i].img += y[k].real * WLUT[twiddleIdx].img + y[k].img * WLUT[twiddleIdx].real;
+				y[i] = cmplxAdd(y[i], cmplxMult(y[k], WLUT[twiddleIdx]));
+				twiddleIdx = (twiddleIdx + amountOfSubDFTs) % N;
 
-				y[k].real = tmp.real - y[k].real;
-				y[k].img = tmp.img - y[k].img;
-				a++;
+				y[k] = cmplxAdd(tmp, cmplxMult(y[k], WLUT[twiddleIdx]));
+				twiddleIdx = (twiddleIdx + amountOfSubDFTs) % N;
 			}
-			a = 0;
 		}
 		amountOfSubDFTs = amountOfSubDFTs >> 1;
 	}
@@ -109,7 +111,7 @@ complex* twiddleFactorLUT(complex* WLUT, int N)
 	int wlutSize, i;
 	float baseAngle, angle, thresh,tmp;
 
-	thresh = 0.25*pow(10, -5);
+	thresh = 0.5*pow(10, -5);
 	wlutSize = N;
 	baseAngle = (2 * PI) / N;
 	WLUT = malloc(sizeof(complex) * wlutSize);
@@ -121,9 +123,9 @@ complex* twiddleFactorLUT(complex* WLUT, int N)
 	{
 		angle = baseAngle * i;
 		tmp = cos(angle);
-		WLUT[i].real = (tmp < thresh) ? 0 : tmp;
+		WLUT[i].real = ((tmp < thresh)&&(-tmp < thresh)) ? 0 : tmp;
 		tmp = sin(angle);
-		WLUT[i].img = (tmp < thresh) ? 0 : tmp;
+		WLUT[i].img = ((tmp < thresh)&&(-tmp < thresh)) ? 0 : tmp;
 	}
 	return WLUT;
 }
@@ -133,4 +135,35 @@ complex* initOutputArray(complex* y,complex* x, int N)
 	memcpy(y, x, N * sizeof(complex));
 	bitReversal(y, N);
 	return y; ;
+}
+complex cmplxMult(complex z, complex w)
+{
+	complex res;
+	float a, b, c, d;
+
+	a = z.real;
+	b = z.img;
+	c = w.real;
+	d = w.img;
+
+	res.real = ((a == 0 || c == 0)&&(b == 0 || d == 0)) ? 0 : (a * c - b * d);
+	res.img = ((b == 0 || c == 0)&&(a == 0 || d == 0)) ? 0 : (b * c + a * d);
+
+	return res;
+}
+
+complex cmplxAdd(complex z, complex w)
+{
+	complex res;
+	float a, b, c, d;
+
+	a = z.real;
+	b = z.img;
+	c = w.real;
+	d = w.img;
+
+	res.real = a + c;
+	res.img = b + d;
+
+	return res;
 }

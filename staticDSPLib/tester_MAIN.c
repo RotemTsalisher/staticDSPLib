@@ -8,10 +8,11 @@ void main()
 {
 	int N = 4;
 	complex x[4];
+	complex z,w,s;
 	complex* y; 
 	x[0].real = 1;
 	x[0].img = 0;
-	x[1].real = 0;
+	x[1].real = 1;
 	x[1].img = 0;
 	x[2].real = 1;
 	x[2].img = 0;
@@ -32,5 +33,5 @@ void main()
 		printf("[");
 		printf("[ % .2f + j %.2f] ", y[i].real, y[i].img);
 	}
-	printf("]\n");
+	printf("]\n"); 
 }

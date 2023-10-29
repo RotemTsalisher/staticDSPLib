@@ -1,4 +1,10 @@
-﻿  tester_MAIN.c
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(29,16): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[4]'
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(29,16): warning C4024: 'radix2FFT': different types for formal and actual parameter 1
+﻿  DSPLib.c
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(29,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(30,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(31,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(52,11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(114,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(116,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(125,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(127,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   staticDSPLib.vcxproj -> C:\Users\PC\Desktop\Git Repos\staticDSPLib\x64\Debug\staticDSPLib.exe
