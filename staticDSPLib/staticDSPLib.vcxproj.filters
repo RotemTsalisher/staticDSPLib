@@ -21,5 +21,8 @@
       <Filter>DSPLib</Filter>
     </ClCompile>
     <ClCompile Include="tester_MAIN.c" />
+    <ClCompile Include="DSPEssentials.c">
+      <Filter>DSPEssentials</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -60,20 +60,15 @@ complex* radix2FFT(complex x[], int N)
 		a = 0; // twiddle idx multiplier
 		for (j = 0; j < N; j += pointsPerSubDFT) // go over sub DFT units
 		{
-			twiddleIdx = 0;
 			for (i = j; i < (j + butterfliesPerSubDFT); i++) // calc butterflies for each sub DFT
 			{
-				if (curStage == 2)
-				{
-					a = a; //debugging
-				}
+				twiddleIdx = (i * amountOfSubDFTs) % N;
 				k = i + butterfliesPerSubDFT;
 				tmp = y[i];
 				y[i] = cmplxAdd(y[i], cmplxMult(y[k], WLUT[twiddleIdx]));
-				twiddleIdx = (twiddleIdx + amountOfSubDFTs) % N;
 
+				twiddleIdx = (k * amountOfSubDFTs) % N;
 				y[k] = cmplxAdd(tmp, cmplxMult(y[k], WLUT[twiddleIdx]));
-				twiddleIdx = (twiddleIdx + amountOfSubDFTs) % N;
 			}
 		}
 		amountOfSubDFTs = amountOfSubDFTs >> 1;
@@ -121,7 +116,7 @@ complex* twiddleFactorLUT(complex* WLUT, int N)
 
 	for (i = 1; i < wlutSize; i++)
 	{
-		angle = baseAngle * i;
+		angle = -(baseAngle * i);
 		tmp = cos(angle);
 		WLUT[i].real = ((tmp < thresh)&&(-tmp < thresh)) ? 0 : tmp;
 		tmp = sin(angle);
@@ -135,35 +130,4 @@ complex* initOutputArray(complex* y,complex* x, int N)
 	memcpy(y, x, N * sizeof(complex));
 	bitReversal(y, N);
 	return y; ;
-}
-complex cmplxMult(complex z, complex w)
-{
-	complex res;
-	float a, b, c, d;
-
-	a = z.real;
-	b = z.img;
-	c = w.real;
-	d = w.img;
-
-	res.real = ((a == 0 || c == 0)&&(b == 0 || d == 0)) ? 0 : (a * c - b * d);
-	res.img = ((b == 0 || c == 0)&&(a == 0 || d == 0)) ? 0 : (b * c + a * d);
-
-	return res;
-}
-
-complex cmplxAdd(complex z, complex w)
-{
-	complex res;
-	float a, b, c, d;
-
-	a = z.real;
-	b = z.img;
-	c = w.real;
-	d = w.img;
-
-	res.real = a + c;
-	res.img = b + d;
-
-	return res;
 }

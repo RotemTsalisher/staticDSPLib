@@ -29,7 +29,3 @@ void bitReversal(complex* y, int N);
 
 complex* initOutputArray(complex* y, complex* x, int N);
 
-
-complex cmplxMult(complex z, complex w);
-
-complex cmplxAdd(complex z, complex w);

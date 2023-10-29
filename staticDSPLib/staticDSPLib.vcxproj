@@ -131,6 +131,7 @@
     <ClInclude Include="DSPLib.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DSPEssentials.c" />
     <ClCompile Include="DSPLib.c" />
     <ClCompile Include="tester_MAIN.c" />
   </ItemGroup>

@@ -1,10 +1,19 @@
-﻿  DSPLib.c
+﻿  DSPEssentials.c
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(49,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(53,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  DSPLib.c
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(29,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(30,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(31,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(52,11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(114,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(116,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(125,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(127,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(109,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(111,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(120,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(122,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  tester_MAIN.c
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(13,11): warning C4101: 'y': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(11,14): warning C4101: 's': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(10,10): warning C4101: 'x': unreferenced local variable
+  Generating Code...
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(15): warning C4716: 'magArray': must return a value
   staticDSPLib.vcxproj -> C:\Users\PC\Desktop\Git Repos\staticDSPLib\x64\Debug\staticDSPLib.exe
