@@ -10,8 +10,23 @@ float* magArray(complex* arr, int size)
 
 	for (i = 0; i < size; i++)
 	{
-		
+		out[i] = magnitude(arr[i]);
 	}
+
+	return out;
+}
+float* phaseArray(complex* arr, int size)
+{
+	float* out;
+	int i;
+	out = malloc(sizeof(float) * size);
+
+	for (i = 0; i < size; i++)
+	{
+		out[i] = phase(arr[i]);
+	}
+
+	return out;
 }
 complex cmplxMult(complex z, complex w)
 {
@@ -28,7 +43,6 @@ complex cmplxMult(complex z, complex w)
 
 	return res;
 }
-
 complex cmplxAdd(complex z, complex w)
 {
 	complex res;
@@ -44,11 +58,11 @@ complex cmplxAdd(complex z, complex w)
 
 	return res;
 }
-float magnitude(complex num)
+inline float magnitude(complex num)
 {
 	return MAG(num.real, num.img);
 }
-float phase(complex num)
+inline float phase(complex num)
 {
 	if (num.real == 0 && num.img == 0)
 	{

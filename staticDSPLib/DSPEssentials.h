@@ -11,7 +11,7 @@
 
 #define SQUARE(a)        a*a
 #define MAG(a,b)         sqrt((SQUARE(a) + SQUARE(b)))
-#define PHASE(a,b)		 tan(b/a)*(180/PI)
+#define PHASE(a,b)		 atan(b/a)*(180/PI)
 
 
 typedef struct compelx
@@ -25,9 +25,13 @@ complex cmplxMult(complex z, complex w);
 
 complex cmplxAdd(complex z, complex w);
 
-float magnitude(complex num);
+inline float magnitude(complex num);
 
-float phase(complex num);
+inline float phase(complex num);
+
+float* phaseArray(complex* arr, int size);
+
+float* magArray(complex* arr, int size);
 
 
 
