@@ -131,3 +131,22 @@ complex* initOutputArray(complex* y,complex* x, int N)
 	bitReversal(y, N);
 	return y; ;
 }
+complex* fastConv(complex* x,int N, complex* h, int M, char method[])
+{
+	complex* out,*xf,*hf;
+	int i, L;
+
+	L = M + N - 1;
+	out = malloc(sizeof(complex) * L);
+	xf = malloc(sizeof(complex) * N);
+	hf = malloc(sizeof(complex) * M);
+
+
+	xf = radix2FFT(x,N);
+	hf = radix2FFT(h, M);
+	// implement element wise multiplication and ifft
+}
+complex* invDFTByDef(complex x[], int N)
+{
+
+}

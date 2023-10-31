@@ -72,5 +72,13 @@ inline float phase(complex num)
 	{
 		return (num.img) < 0 ? -90 : 90;
 	}
+	else if ((num.real < 0) && (num.img >= 0))
+	{
+		return (PHASE(num.real, num.img) + 180);
+	}
+	else if ((num.real < 0) && (num.img < 0))
+	{
+		return (PHASE(num.real, num.img) - 180);
+	}
 	return PHASE(num.real, num.img);
 }

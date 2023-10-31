@@ -9,9 +9,9 @@ void main()
 	int N = 16;
 	complex x[16];
 	complex z,w,s;
-	float a;
+	float* y_mag, *y_phase;
 	complex* y; 
-	/*
+	
 	x[0].real = 7;
 	x[0].img = 0;
 	x[1].real = 9;
@@ -50,6 +50,7 @@ void main()
 	x[15].img = 0;
 	y = NULL;
 
+
 	for (int i = 0; i < N; i++)
 	{
 		printf("[");
@@ -58,17 +59,20 @@ void main()
 	printf("]\n");
 
 	y = radix2FFT(&x, N);
-	for (int i = 0; i < N; i++)
+	y_mag = magArray(y, N);
+	y_phase = phaseArray(y,N);
+	/*for (int i = 0; i < N; i++)
 	{
 		printf("[");
 		printf("[ % .2f + j %.2f] ", y[i].real, y[i].img);
 	}
-	printf("]\n"); */
-
-	z.real = 1;
-	z.img = 1;
-	w.real = 1;
-	w.img = 0;
-
-	a = phase(z);
+	printf("]\n");  */
+	
+	printf("MAGNITUDE: \n");
+	for (int i = 0; i < N; i++)
+	{
+		printf("[");
+		printf("[ % .2f] ", y_phase[i]);
+	}
+	printf("]\n");  
 }
