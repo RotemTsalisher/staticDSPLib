@@ -82,3 +82,10 @@ inline float phase(complex num)
 	}
 	return PHASE(num.real, num.img);
 }
+int isPowerOfTwo(int N)
+{
+	int isPowerOfTwo = 0;
+	float t = log2(N);
+
+	return (ceil(t) == floor(t));
+}

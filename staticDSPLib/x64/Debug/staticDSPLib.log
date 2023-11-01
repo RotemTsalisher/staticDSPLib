@@ -1,7 +1,10 @@
-﻿  DSPEssentials.c
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(63,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(73,24): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(77,10): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(81,10): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(83,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+﻿  tester_MAIN.c
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(61,10): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[16]'
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(61,10): warning C4024: 'fft': different types for formal and actual parameter 1
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(11,10): warning C4101: 'z': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(12,9): warning C4101: 'y_mag': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(12,17): warning C4101: 'y_phase': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(11,14): warning C4101: 's': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(11,12): warning C4101: 'w': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(13,15): warning C4101: 'i_y': unreferenced local variable
   staticDSPLib.vcxproj -> C:\Users\PC\Desktop\Git Repos\staticDSPLib\x64\Debug\staticDSPLib.exe

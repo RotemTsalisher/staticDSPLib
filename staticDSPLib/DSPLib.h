@@ -20,7 +20,7 @@
  * for each k, will compute the sum of all complex multiplications between 
  * twiddle factor raised to n power (multiply the base angle), and input samples.
  * -------------------- -------- -------------------- */
-complex* DFTByDef(complex x[], int N);
+complex* DFTCalc(complex x[], int N, int isInverse);
 /* -------------------- radix2FFT -------------------
  * 
  * 
@@ -31,13 +31,20 @@ complex* DFTByDef(complex x[], int N);
  * -------------------- -------- -------------------- */
 complex* radix2FFT(complex x[], int N);
 
+complex* dft(complex x[], int N);
+
+complex* idft(complex x[], int N);
 
 complex* twiddleFactorLUT(complex* WLUT, int N);
 
-
 void bitReversal(complex* y, int N);
 
-
 complex* initOutputArray(complex* y, complex* x, int N);
+
+complex* fft(complex x[], int N);
+
+complex* ifft(complex x[], int N);
+
+
 
 

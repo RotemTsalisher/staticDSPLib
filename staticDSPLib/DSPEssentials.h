@@ -6,12 +6,17 @@
 #include "stdlib.h"
 #include "math.h"
 
-#define IMAGINARY_UNIT   0x69
-#define PI               3.14159
+#define IMAGINARY_UNIT               0x69
+#define PI                           3.14159
+#define TWIDDLE_ZERO                 (complex){1,0}
 
-#define SQUARE(a)        a*a
-#define MAG(a,b)         sqrt((SQUARE(a) + SQUARE(b)))
-#define PHASE(a,b)		 atan(b/a)*(180/PI)
+#define SQUARE(a)                    a*a
+#define MAG(a,b)                     sqrt((SQUARE(a) + SQUARE(b)))
+#define PHASE(a,b)		             atan(b/a)*(180/PI)
+
+#define LENGTH_NOT_SUPPORTED         NULL
+#define TEST_NULL                    NULL
+
 
 
 typedef struct compelx
@@ -32,6 +37,8 @@ inline float phase(complex num);
 float* phaseArray(complex* arr, int size);
 
 float* magArray(complex* arr, int size);
+
+int isPowerOfTwo(int N);
 
 
 

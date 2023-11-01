@@ -10,7 +10,7 @@ void main()
 	complex x[16];
 	complex z,w,s;
 	float* y_mag, *y_phase;
-	complex* y; 
+	complex* y, *i_y; 
 	
 	x[0].real = 7;
 	x[0].img = 0;
@@ -23,9 +23,9 @@ void main()
 
 	x[4].real = 3;
 	x[4].img = 0;
-	x[5].real = -8;
+	x[5].real = -5;
 	x[5].img = 0;
-	x[6].real = -5;
+	x[6].real = -30;
 	x[6].img = 0;
 	x[7].real = 1;
 	x[7].img = 0; 
@@ -58,21 +58,40 @@ void main()
 	}
 	printf("]\n");
 
-	y = radix2FFT(&x, N);
-	y_mag = magArray(y, N);
-	y_phase = phaseArray(y,N);
-	/*for (int i = 0; i < N; i++)
+	y = fft(&x, 15);
+	if (y == LENGTH_NOT_SUPPORTED)
 	{
-		printf("[");
-		printf("[ % .2f + j %.2f] ", y[i].real, y[i].img);
+		printf("length of fft not supported\n");
 	}
-	printf("]\n");  */
-	
-	printf("MAGNITUDE: \n");
+	else
+	{
+		printf("----FFT:----\n");
+		for (int i = 0; i < N; i++)
+		{
+			printf("[");
+			printf("[ % .2f + j %.2f] ", y[i].real, y[i].img);
+		}
+		printf("]\n");
+	}
+	if (y == TEST_NULL)
+	{
+		printf("also test null \n");
+	}
+	/*i_y = idft(y, N);
+	printf("----iDFT:----\n");
+
 	for (int i = 0; i < N; i++)
 	{
 		printf("[");
-		printf("[ % .2f] ", y_phase[i]);
+		printf("[ % .2f + j %.2f] ", i_y[i].real, i_y[i].img);
 	}
-	printf("]\n");  
+	printf("]\n"); */
+	
+	/**printf("MAGNITUDE: \n");
+	for (int i = 0; i < N; i++)
+	{
+		printf("[");
+		printf("[ % .2f] ", y[i]);
+	}
+	printf("]\n");  */
 }

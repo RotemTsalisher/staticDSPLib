@@ -2,9 +2,9 @@
 #include "DSPEssentials.h"
 #include "DSPLib.h"
 
-complex* DFTByDef(complex x[], int N)
+complex* DFTCalc(complex x[], int N, int isInverse)
 {
-	complex twiddle;
+	complex twiddle, invFactor;
 	complex* y;
 	int k, n;
 	float angle;
@@ -13,33 +13,33 @@ complex* DFTByDef(complex x[], int N)
 	memset(y, 0, N * sizeof(complex)); // init output array
 	memset(&twiddle, 0, sizeof(complex)); // init twiddle factor
 
+	invFactor.real = (float)1 / N;
+	invFactor.img = 0;
+
 	for (k = 0; k < N; k++) // apply DFT formula by definition
 	{
 		for (n = 0; n < N; n++)
 		{
 			if ((n == 0) || (k == 0))
 			{
-				// no need for func calls cos / sin because twiddle factor will be 1;
-				y[k].real += x[n].real;
-				y[k].img += x[n].img;
+				//twiddle will be equal to 1;
+				twiddle.real = 1;
+				twiddle.img = 0;
 			}
 			else
 			{
 				//calc twiddle factoe and apply formula;
 				angle = ((2 * PI) * (k * n)) / N;
 				twiddle.real = cos(angle);
-				twiddle.img = -sin(angle);
-
-				//complex multiplication of twiddle and input sample:
-				y[k].real += twiddle.real * x[n].real - twiddle.img * x[n].img;
-				y[k].img += twiddle.real * x[n].img + twiddle.img * x[n].real;
+				twiddle.img = (isInverse) ? sin(angle) : -sin(angle);
 			}
-
+			//complex multiplication of twiddle and input sample:
+			y[k] = (isInverse) ? cmplxAdd(y[k], cmplxMult(cmplxMult(x[n], twiddle), invFactor)) : cmplxAdd(y[k], cmplxMult(x[n], twiddle));
 		}
 	}
 	return y;
 }
-complex* radix2FFT(complex x[], int N)
+complex* radix2FFT(complex x[], int N, int isInverse)
 {
 	int stages, pointsPerSubDFT, butterfliesPerSubDFT, curStage, j, i,k,amountOfSubDFTs,a,twiddleIdx;
 	complex *y, *WLUT;
@@ -142,11 +142,30 @@ complex* fastConv(complex* x,int N, complex* h, int M, char method[])
 	hf = malloc(sizeof(complex) * M);
 
 
-	xf = radix2FFT(x,N);
-	hf = radix2FFT(h, M);
+	//xf = radix2FFT(x,N);
+	//hf = radix2FFT(h, M);
 	// implement element wise multiplication and ifft
 }
-complex* invDFTByDef(complex x[], int N)
+complex* dft(complex x[], int N) //this is what user actually calls
+{
+	return DFTCalc(x, N, 0);
+}
+complex* idft(complex x[], int N) // this is what user actually calls
+{
+	return DFTCalc(x, N, 1);
+}
+complex* fft(complex x[], int N)
+{
+	if (isPowerOfTwo(N))
+	{
+		return radix2FFT(x, N, 0);
+	}
+	else
+	{
+		return LENGTH_NOT_SUPPORTED;
+	}
+}
+complex* ifft(complex x[], int N)
 {
 
 }
