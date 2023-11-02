@@ -89,3 +89,8 @@ int isPowerOfTwo(int N)
 
 	return (ceil(t) == floor(t));
 }
+int complexComp(complex a, complex b)
+{
+	return ((a.real == b.real) && (a.img == b.img));
+}
+

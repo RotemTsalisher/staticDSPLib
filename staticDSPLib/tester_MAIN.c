@@ -50,7 +50,7 @@ void main()
 	x[15].img = 0;
 	y = NULL;
 
-
+	/*
 	for (int i = 0; i < N; i++)
 	{
 		printf("[");
@@ -59,7 +59,7 @@ void main()
 	printf("]\n");
 
 	y = fft(&x, 15);
-	if (y == LENGTH_NOT_SUPPORTED)
+	if (COMPLEXCOMP(*y,RADIX2_LENGTH_NOT_SUPPORTED))
 	{
 		printf("length of fft not supported\n");
 	}
@@ -73,10 +73,10 @@ void main()
 		}
 		printf("]\n");
 	}
-	if (y == TEST_NULL)
+	if (complexComp(*y,TEST_ERROR))
 	{
 		printf("also test null \n");
-	}
+	} */
 	/*i_y = idft(y, N);
 	printf("----iDFT:----\n");
 

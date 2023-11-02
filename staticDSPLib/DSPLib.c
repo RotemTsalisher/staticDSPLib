@@ -2,15 +2,13 @@
 #include "DSPEssentials.h"
 #include "DSPLib.h"
 
-complex* DFTCalc(complex x[], int N, int isInverse)
+DSPsysStatus DFTCalc(complex* y,complex x[], int N, int isInverse)
 {
 	complex twiddle, invFactor;
-	complex* y;
 	int k, n;
 	float angle;
 
-	y = (complex*)malloc(N * sizeof(complex)); // allocate mem for N point DFT
-	memset(y, 0, N * sizeof(complex)); // init output array
+	y = initOutputArray(y, x, N, NOT_FOR_FFT);
 	memset(&twiddle, 0, sizeof(complex)); // init twiddle factor
 
 	invFactor.real = (float)1 / N;
@@ -37,18 +35,23 @@ complex* DFTCalc(complex x[], int N, int isInverse)
 			y[k] = (isInverse) ? cmplxAdd(y[k], cmplxMult(cmplxMult(x[n], twiddle), invFactor)) : cmplxAdd(y[k], cmplxMult(x[n], twiddle));
 		}
 	}
-	return y;
+	return SUCCESS;
 }
-complex* radix2FFT(complex x[], int N, int isInverse)
+DSPsysStatus radix2FFT(complex* y, complex x[], int N, int isInverse)
 {
 	int stages, pointsPerSubDFT, butterfliesPerSubDFT, curStage, j, i,k,amountOfSubDFTs,a,twiddleIdx;
-	complex *y, *WLUT;
+	complex *WLUT;
 	complex tmp;
+
+	if (!(isPowerOfTwo(N)))
+	{
+		return RADIX2_LENGTH_NOT_SUPPORTED;
+	}
 	
 	y = NULL;
 	WLUT = NULL;
 
-	y = initOutputArray(y, x, N); //  copy input array to output array and apply bit reversal 
+	y = initOutputArray(y, x, N,FOR_FFT); //  copy input array to output array and apply bit reversal 
 	stages = log2(N);
 	amountOfSubDFTs = N >> 1;
 	WLUT = twiddleFactorLUT(WLUT, N);
@@ -73,7 +76,7 @@ complex* radix2FFT(complex x[], int N, int isInverse)
 		}
 		amountOfSubDFTs = amountOfSubDFTs >> 1;
 	}
-	return y;
+	return SUCCESS;
 }
 void bitReversal(complex* y, int N)
 {
@@ -124,11 +127,18 @@ complex* twiddleFactorLUT(complex* WLUT, int N)
 	}
 	return WLUT;
 }
-complex* initOutputArray(complex* y,complex* x, int N)
+complex* initOutputArray(complex* y,complex* x, int N, int forFFT)
 {
 	y = malloc(sizeof(complex) * N);
-	memcpy(y, x, N * sizeof(complex));
-	bitReversal(y, N);
+	if (forFFT)
+	{
+		memcpy(y, x, N * sizeof(complex));
+		bitReversal(y, N);
+	}
+	else
+	{
+		memset(y, 0, N * sizeof(complex)); // init output array
+	}
 	return y; ;
 }
 complex* fastConv(complex* x,int N, complex* h, int M, char method[])
@@ -148,21 +158,39 @@ complex* fastConv(complex* x,int N, complex* h, int M, char method[])
 }
 complex* dft(complex x[], int N) //this is what user actually calls
 {
-	return DFTCalc(x, N, 0);
-}
-complex* idft(complex x[], int N) // this is what user actually calls
-{
-	return DFTCalc(x, N, 1);
-}
-complex* fft(complex x[], int N)
-{
-	if (isPowerOfTwo(N))
+	complex* y = NULL;
+	if (!(SUCCESS == DFTCalc(y, x, N, NOT_INVERSE)))
 	{
-		return radix2FFT(x, N, 0);
+		// error handeling
 	}
 	else
 	{
-		return LENGTH_NOT_SUPPORTED;
+		return y;
+	}
+}
+complex* idft(complex x[], int N) // this is what user actually calls
+{
+	complex* y = NULL;
+	if (!(SUCCESS == DFTCalc(y, x, N, INVERSE)))
+	{
+		// error handeling
+	}
+	else
+	{
+		return y;
+	}
+}
+complex* fft(complex x[], int N)
+{
+	complex* y = NULL;
+
+	if (!(SUCCESS == radix2FFT(y, x, N, NOT_INVERSE)))
+	{
+		// error handle
+	}
+	else
+	{
+		return y;
 	}
 }
 complex* ifft(complex x[], int N)

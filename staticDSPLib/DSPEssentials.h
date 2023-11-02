@@ -12,11 +12,13 @@
 
 #define SQUARE(a)                    a*a
 #define MAG(a,b)                     sqrt((SQUARE(a) + SQUARE(b)))
-#define PHASE(a,b)		             atan(b/a)*(180/PI)
+#define PHASE(a,b)		             atan(b/a)*(180/PI) 
 
-#define LENGTH_NOT_SUPPORTED         NULL
-#define TEST_NULL                    NULL
+#define FOR_FFT                      0x01
+#define NOT_FOR_FFT                  0x00
 
+#define INVERSE                      0x01
+#define NOT_INVERSE                  0x00
 
 
 typedef struct compelx
@@ -25,6 +27,16 @@ typedef struct compelx
 	float img;
 
 }complex;
+
+typedef enum DSPsysStatus {
+
+	
+	SUCCESS                       =  1,
+	RADIX2_LENGTH_NOT_SUPPORTED   = -1,
+
+	EMPTY_SEQUENCE                = -9,
+
+}DSPsysStatus;
 
 complex cmplxMult(complex z, complex w);
 
@@ -39,6 +51,9 @@ float* phaseArray(complex* arr, int size);
 float* magArray(complex* arr, int size);
 
 int isPowerOfTwo(int N);
+
+int complexComp(complex a, complex b);
+
 
 
 
