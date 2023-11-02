@@ -195,5 +195,14 @@ complex* fft(complex x[], int N)
 }
 complex* ifft(complex x[], int N)
 {
+	complex* y = NULL;
 
+	if (!(SUCCESS == radix2FFT(y, x, N, INVERSE)))
+	{
+		// error handle
+	}
+	else
+	{
+		return y;
+	}
 }

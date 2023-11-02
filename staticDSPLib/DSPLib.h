@@ -45,6 +45,23 @@ complex* fft(complex x[], int N); // fft allocates a ptr, call a method function
 
 complex* ifft(complex x[], int N); // same as fft
 
+DSPsysStatus eleWiseArrayMult(complex* y, complex* z,int M, complex* w, int N) // multiplying arrays element wise, return status
+{
+	int i;
+
+	if (M != N)
+	{
+		return MULT_LENGTHES_NOT_EQUAL;
+	}
+
+	y = malloc(sizeof(complex) * N);
+	for (i = 0; i < N; i++)
+	{
+		y[i] = cmplxMult(z[i], w[i]);
+	}
+	return SUCCESS;
+}
+
 
 
 

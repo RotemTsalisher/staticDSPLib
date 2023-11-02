@@ -33,6 +33,7 @@ typedef enum DSPsysStatus {
 	
 	SUCCESS                       =  1,
 	RADIX2_LENGTH_NOT_SUPPORTED   = -1,
+	MULT_LENGTHES_NOT_EQUAL       = -2,
 
 	EMPTY_SEQUENCE                = -9,
 
@@ -53,6 +54,8 @@ float* magArray(complex* arr, int size);
 int isPowerOfTwo(int N);
 
 int complexComp(complex a, complex b);
+
+DSPsysStatus eleWiseArrayMult(complex* y, complex* z, complex* w, int N);
 
 
 
