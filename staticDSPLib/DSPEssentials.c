@@ -93,4 +93,19 @@ int complexComp(complex a, complex b)
 {
 	return ((a.real == b.real) && (a.img == b.img));
 }
+DSPsysStatus eleWiseArrayMult(complex y[], complex z[], int M, complex w[], int N) // multiplying arrays element wise, return status
+{
+	int i;
+
+	if (M != N)
+	{
+		return MULT_LENGTHES_NOT_EQUAL;
+	}
+
+	for (i = 0; i < N; i++)
+	{
+		y[i] = cmplxMult(z[i], w[i]);
+	}
+	return SUCCESS;
+}
 

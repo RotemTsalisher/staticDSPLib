@@ -2,15 +2,18 @@
 #include "DSPEssentials.h"
 #include "DSPLib.h"
 
-DSPsysStatus DFTCalc(complex* y,complex x[], int N, int isInverse)
+DSPsysStatus DFTCalc(complex y[], complex x[], int N, int isInverse)
 {
 	complex twiddle, invFactor;
 	int k, n;
 	float angle;
 
-	y = initOutputArray(y, x, N, NOT_FOR_FFT);
-	memset(&twiddle, 0, sizeof(complex)); // init twiddle factor
+	if (!(SUCCESS == initOutputArray(y, x, N, NOT_FOR_FFT)))
+	{
+		return INIT_ARRAY_FAILED;
+	}
 
+	memset(&twiddle, 0, sizeof(complex)); // init twiddle factor
 	invFactor.real = (float)1 / N;
 	invFactor.img = 0;
 
@@ -37,7 +40,7 @@ DSPsysStatus DFTCalc(complex* y,complex x[], int N, int isInverse)
 	}
 	return SUCCESS;
 }
-DSPsysStatus radix2FFT(complex* y, complex x[], int N, int isInverse)
+DSPsysStatus radix2FFT(complex y[], complex x[], int N, int isInverse)
 {
 	int stages, pointsPerSubDFT, butterfliesPerSubDFT, curStage, j, i,k,amountOfSubDFTs,a,twiddleIdx;
 	complex *WLUT;
@@ -47,14 +50,26 @@ DSPsysStatus radix2FFT(complex* y, complex x[], int N, int isInverse)
 	{
 		return RADIX2_LENGTH_NOT_SUPPORTED;
 	}
-	
-	y = NULL;
+
 	WLUT = NULL;
 
-	y = initOutputArray(y, x, N,FOR_FFT); //  copy input array to output array and apply bit reversal 
+	if (!(SUCCESS == initOutputArray(y, x, N, FOR_FFT)))
+	{
+		return INIT_ARRAY_FAILED;
+	}//  copy input array to output array and apply bit reversal  if it is for fft
+
 	stages = log2(N);
 	amountOfSubDFTs = N >> 1;
-	WLUT = twiddleFactorLUT(WLUT, N);
+
+	WLUT = malloc(sizeof(complex) * N);
+	if (WLUT == NULL)
+	{
+		return ALLOCATION_FAILED;
+	}
+	else if (!(SUCCESS == twiddleFactorLUT(WLUT, N)))
+	{
+		return TWIDDLE_FACTOR_LUT_FAILED;
+	}
 
 	for (curStage = 1; curStage <= stages; curStage++)
 	{
@@ -104,18 +119,17 @@ void bitReversal(complex* y, int N)
 		}
 	}
 }
-complex* twiddleFactorLUT(complex* WLUT, int N)
+DSPsysStatus twiddleFactorLUT(complex* WLUT, int N)
 {
 	int wlutSize, i;
 	float baseAngle, angle, thresh,tmp;
 
+	WLUT[0].real = 1;
+	WLUT[0].img = 0;
+
 	thresh = 0.5*pow(10, -5);
 	wlutSize = N;
 	baseAngle = (2 * PI) / N;
-	WLUT = malloc(sizeof(complex) * wlutSize);
-
-	WLUT[0].real = 1;
-	WLUT[0].img = 0;
 
 	for (i = 1; i < wlutSize; i++)
 	{
@@ -125,11 +139,10 @@ complex* twiddleFactorLUT(complex* WLUT, int N)
 		tmp = sin(angle);
 		WLUT[i].img = ((tmp < thresh)&&(-tmp < thresh)) ? 0 : tmp;
 	}
-	return WLUT;
+	return SUCCESS;
 }
-complex* initOutputArray(complex* y,complex* x, int N, int forFFT)
+DSPsysStatus initOutputArray(complex y[], complex x[], int N, int forFFT)
 {
-	y = malloc(sizeof(complex) * N);
 	if (forFFT)
 	{
 		memcpy(y, x, N * sizeof(complex));
@@ -139,7 +152,11 @@ complex* initOutputArray(complex* y,complex* x, int N, int forFFT)
 	{
 		memset(y, 0, N * sizeof(complex)); // init output array
 	}
-	return y; ;
+	if ((y == NULL) || (x == NULL))
+	{
+		return INIT_ARRAY_FAILED;
+	}
+	return SUCCESS; 
 }
 complex* fastConv(complex* x,int N, complex* h, int M, char method[])
 {
@@ -156,53 +173,52 @@ complex* fastConv(complex* x,int N, complex* h, int M, char method[])
 	//hf = radix2FFT(h, M);
 	// implement element wise multiplication and ifft
 }
-complex* dft(complex x[], int N) //this is what user actually calls
+DSPsysStatus dft(complex y[], complex x[], int N) //this is what user actually calls
 {
-	complex* y = NULL;
 	if (!(SUCCESS == DFTCalc(y, x, N, NOT_INVERSE)))
 	{
 		// error handeling
 	}
 	else
 	{
-		return y;
+		return SUCCESS;
 	}
 }
-complex* idft(complex x[], int N) // this is what user actually calls
+DSPsysStatus idft(complex y[], complex x[], int N) // this is what user actually calls
 {
-	complex* y = NULL;
 	if (!(SUCCESS == DFTCalc(y, x, N, INVERSE)))
 	{
 		// error handeling
 	}
 	else
 	{
-		return y;
+		return SUCCESS;
 	}
 }
-complex* fft(complex x[], int N)
+DSPsysStatus fft(complex y[], complex x[], int N)
 {
-	complex* y = NULL;
-
-	if (!(SUCCESS == radix2FFT(y, x, N, NOT_INVERSE)))
+	DSPsysStatus status;
+	status = radix2FFT(y, x, N, NOT_INVERSE);
+	if (status != SUCCESS)
 	{
 		// error handle
 	}
 	else
 	{
-		return y;
+		return SUCCESS;
 	}
 }
-complex* ifft(complex x[], int N)
+DSPsysStatus ifft(complex y[], complex x[], int N)
 {
-	complex* y = NULL;
+	DSPsysStatus status;
 
-	if (!(SUCCESS == radix2FFT(y, x, N, INVERSE)))
+	status = radix2FFT(y, x, N, INVERSE);
+	if (status != SUCCESS)
 	{
 		// error handle
 	}
 	else
 	{
-		return y;
+		return SUCCESS;
 	}
 }

@@ -33,7 +33,10 @@ typedef enum DSPsysStatus {
 	
 	SUCCESS                       =  1,
 	RADIX2_LENGTH_NOT_SUPPORTED   = -1,
-	MULT_LENGTHES_NOT_EQUAL       = -2,
+	TWIDDLE_FACTOR_LUT_FAILED     = -2,
+	MULT_LENGTHES_NOT_EQUAL       = -3,
+	INIT_ARRAY_FAILED             = -4,
+	ALLOCATION_FAILED             = -5,
 
 	EMPTY_SEQUENCE                = -9,
 
@@ -55,7 +58,7 @@ int isPowerOfTwo(int N);
 
 int complexComp(complex a, complex b);
 
-DSPsysStatus eleWiseArrayMult(complex* y, complex* z, complex* w, int N);
+DSPsysStatus eleWiseArrayMult(complex y[], complex z[], int M, complex w[], int N);
 
 
 

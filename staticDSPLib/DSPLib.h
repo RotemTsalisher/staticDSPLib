@@ -29,38 +29,22 @@ DSPsysStatus DFTCalc(complex* y,complex x[], int N, int isInverse);
  * 
  * 
  * -------------------- -------- -------------------- */
-DSPsysStatus radix2FFT(complex* y, complex x[], int N);
+DSPsysStatus radix2FFT(complex y[], complex x[], int N, int isInverse);
 
-complex* dft(complex x[], int N); // dft allocates a ptr, calls a method to compute and return a status
+DSPsysStatus dft(complex y[], complex x[], int N); // dft allocates a ptr, calls a method to compute and return a status
 
-complex* idft(complex x[], int N); // same as dft
+DSPsysStatus idft(complex y[], complex x[], int N); // same as dft
 
-complex* twiddleFactorLUT(complex* WLUT, int N);
+DSPsysStatus twiddleFactorLUT(complex* WLUT, int N);
 
 void bitReversal(complex* y, int N);
 
-complex* initOutputArray(complex* y, complex* x, int N,int bitRevNeeded);
+DSPsysStatus initOutputArray(complex y[], complex x[], int N, int bitRevNeeded);
 
-complex* fft(complex x[], int N); // fft allocates a ptr, call a method function to compute and return status
+DSPsysStatus fft(complex y[], complex x[], int N); // fft allocates a ptr, call a method function to compute and return status
 
-complex* ifft(complex x[], int N); // same as fft
+DSPsysStatus ifft(complex y[], complex x[], int N); // same as fft
 
-DSPsysStatus eleWiseArrayMult(complex* y, complex* z,int M, complex* w, int N) // multiplying arrays element wise, return status
-{
-	int i;
-
-	if (M != N)
-	{
-		return MULT_LENGTHES_NOT_EQUAL;
-	}
-
-	y = malloc(sizeof(complex) * N);
-	for (i = 0; i < N; i++)
-	{
-		y[i] = cmplxMult(z[i], w[i]);
-	}
-	return SUCCESS;
-}
 
 
 

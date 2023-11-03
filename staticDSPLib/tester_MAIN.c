@@ -6,6 +6,7 @@
 
 void main()
 {
+	DSPsysStatus mainStatus;
 	int N = 4;
 	complex x[4];
 	complex y[4];
@@ -23,7 +24,22 @@ void main()
 	x[3].real = 0;
 	x[3].img = 0;
 
-	y = fft(&x, N);
-	i_y = ifft(&y, N);
+	mainStatus = dft(&y, &x, N);
+	printf("ARRAY AFTER FFT:\n[");
+	for (int k = 0; k < N; k++)
+	{
+		printf("%.2f + j%.2f, ", y[k].real, y[k].img);
+	}
+	printf("]\n");
+
+	mainStatus = idft(&i_y, &y, N);
+	printf("ARRAY AFTER iFFT:\n[");
+	for (int k = 0; k < N; k++)
+	{
+		printf("%.2f + j%.2f, ", i_y[k].real, i_y[k].img);
+	}
+	printf("]\n");
+
+	//mainStatus = ifft(&i_y, &y, N);
 
 }
