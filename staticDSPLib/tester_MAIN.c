@@ -7,22 +7,13 @@
 void main()
 {
 	DSPsysStatus mainStatus;
-	int N = 4;
-	complex x[4];
-	complex y[4];
-	complex i_y[4];
-	complex z,w,s;
-	float* y_mag, *y_phase;
+	const int N = 8;
+	complex x[8] = { {5,0}, {-3,0}, {-2,0}, {1,0}, {-6,0}, {1,0}, {7,0}, {-4,0} };
+	complex y[8];
+	complex i_y[8]; // inverse y is a test array to see if i_y == x (for ifft,idft funcs);
+	float y_mag[8];
+	float y_phase[8];
 	//complex* y, *i_y; 
-	
-	x[0].real = 1;
-	x[0].img = 0;
-	x[1].real = 1;
-	x[1].img = 0;
-	x[2].real = 1;
-	x[2].img = 0;
-	x[3].real = 0;
-	x[3].img = 0;
 
 	mainStatus = dft(&y, &x, N);
 	printf("ARRAY AFTER FFT:\n[");
@@ -32,7 +23,7 @@ void main()
 	}
 	printf("]\n");
 
-	mainStatus = idft(&i_y, &y, N);
+	mainStatus = ifft(&i_y, &y, N);
 	printf("ARRAY AFTER iFFT:\n[");
 	for (int k = 0; k < N; k++)
 	{

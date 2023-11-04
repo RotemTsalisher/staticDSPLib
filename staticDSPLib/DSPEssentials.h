@@ -60,6 +60,8 @@ int complexComp(complex a, complex b);
 
 DSPsysStatus eleWiseArrayMult(complex y[], complex z[], int M, complex w[], int N);
 
+inline complex cmplxConj(complex w);
+
 
 
 

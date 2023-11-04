@@ -35,7 +35,7 @@ DSPsysStatus dft(complex y[], complex x[], int N); // dft allocates a ptr, calls
 
 DSPsysStatus idft(complex y[], complex x[], int N); // same as dft
 
-DSPsysStatus twiddleFactorLUT(complex* WLUT, int N);
+DSPsysStatus twiddleFactorLUT(complex* WLUT, int );
 
 void bitReversal(complex* y, int N);
 

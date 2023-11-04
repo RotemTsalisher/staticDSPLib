@@ -14,8 +14,7 @@ DSPsysStatus DFTCalc(complex y[], complex x[], int N, int isInverse)
 	}
 
 	memset(&twiddle, 0, sizeof(complex)); // init twiddle factor
-	invFactor.real = (float)1 / N;
-	invFactor.img = 0;
+	invFactor = (complex){ (float)1 / N, 0 };
 
 	for (k = 0; k < N; k++) // apply DFT formula by definition
 	{
@@ -24,15 +23,14 @@ DSPsysStatus DFTCalc(complex y[], complex x[], int N, int isInverse)
 			if ((n == 0) || (k == 0))
 			{
 				//twiddle will be equal to 1;
-				twiddle.real = 1;
-				twiddle.img = 0;
+				twiddle = (complex){ 1,0 };
 			}
 			else
 			{
 				//calc twiddle factoe and apply formula;
 				angle = ((2 * PI) * (k * n)) / N;
-				twiddle.real = cos(angle);
-				twiddle.img = (isInverse) ? sin(angle) : -sin(angle);
+				twiddle = (complex) { cos(angle), 
+				                      (isInverse) ? sin(angle) : sin(-angle) };
 			}
 			//complex multiplication of twiddle and input sample:
 			y[k] = (isInverse) ? cmplxAdd(y[k], cmplxMult(cmplxMult(x[n], twiddle), invFactor)) : cmplxAdd(y[k], cmplxMult(x[n], twiddle));
@@ -57,20 +55,26 @@ DSPsysStatus radix2FFT(complex y[], complex x[], int N, int isInverse)
 	{
 		return INIT_ARRAY_FAILED;
 	}//  copy input array to output array and apply bit reversal  if it is for fft
-
-	stages = log2(N);
-	amountOfSubDFTs = N >> 1;
+	else if (isInverse)
+	{
+		if (!(SUCCESS == cmplxConjArr(y, N)))
+		{
+			return INIT_ARRAY_FAILED;
+		}
+	}
 
 	WLUT = malloc(sizeof(complex) * N);
 	if (WLUT == NULL)
 	{
 		return ALLOCATION_FAILED;
 	}
-	else if (!(SUCCESS == twiddleFactorLUT(WLUT, N)))
+	else if (!(SUCCESS == twiddleFactorLUT(WLUT, N, isInverse)))
 	{
 		return TWIDDLE_FACTOR_LUT_FAILED;
 	}
 
+	stages = log2(N);
+	amountOfSubDFTs = N >> 1;
 	for (curStage = 1; curStage <= stages; curStage++)
 	{
 		pointsPerSubDFT = 1 << curStage;
@@ -90,6 +94,13 @@ DSPsysStatus radix2FFT(complex y[], complex x[], int N, int isInverse)
 			}
 		}
 		amountOfSubDFTs = amountOfSubDFTs >> 1;
+	}
+	if (isInverse)
+	{
+		for (i = 0; i < N; i++)
+		{
+			y[i] = cmplxMult((complex) { (float)1 / N, 0 }, cmplxConj(y[i]));
+		}
 	}
 	return SUCCESS;
 }
@@ -121,23 +132,18 @@ void bitReversal(complex* y, int N)
 }
 DSPsysStatus twiddleFactorLUT(complex* WLUT, int N)
 {
-	int wlutSize, i;
-	float baseAngle, angle, thresh,tmp;
+	int i;
+	float baseAngle, angle;
 
-	WLUT[0].real = 1;
-	WLUT[0].img = 0;
+	WLUT[0] = (complex){ 1,0 };
 
-	thresh = 0.5*pow(10, -5);
-	wlutSize = N;
 	baseAngle = (2 * PI) / N;
 
-	for (i = 1; i < wlutSize; i++)
+	for (i = 1; i < N; i++)
 	{
-		angle = -(baseAngle * i);
-		tmp = cos(angle);
-		WLUT[i].real = ((tmp < thresh)&&(-tmp < thresh)) ? 0 : tmp;
-		tmp = sin(angle);
-		WLUT[i].img = ((tmp < thresh)&&(-tmp < thresh)) ? 0 : tmp;
+		angle = - (baseAngle * i);
+
+		WLUT[i] = (complex){ cos(angle), sin(angle) };
 	}
 	return SUCCESS;
 }

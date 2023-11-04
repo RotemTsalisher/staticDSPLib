@@ -108,4 +108,19 @@ DSPsysStatus eleWiseArrayMult(complex y[], complex z[], int M, complex w[], int 
 	}
 	return SUCCESS;
 }
+DSPsysStatus cmplxConjArr(complex w[], int N)
+{
+	int i;
+
+	if (N == 0 || w == NULL) return EMPTY_SEQUENCE;
+	for (i = 0; i < N; i++)
+	{
+		w[i] = cmplxConj(w[i]);
+	}
+	return SUCCESS;
+}
+inline complex cmplxConj(complex w)
+{
+	return (complex) { w.real, -w.img };
+}
 

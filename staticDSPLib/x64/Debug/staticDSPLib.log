@@ -1,16 +1,39 @@
-﻿  DSPLib.c
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(33,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(34,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(35,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(61,11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(130,14): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(132,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(137,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(139,9): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(164,6): warning C4101: 'i': unreferenced local variable
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(175): warning C4716: 'fastConv': must return a value
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(186): warning C4715: 'dft': not all control paths return a value
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(197): warning C4715: 'idft': not all control paths return a value
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(224): warning C4715: 'ifft': not all control paths return a value
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(210): warning C4715: 'fft': not all control paths return a value
+﻿  DSPEssentials.c
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(63,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(73,24): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(77,10): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(81,10): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(83,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPEssentials.c(88,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  DSPLib.c
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(31,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(32,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(33,39): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(60,20): warning C4013: 'cmplxConjArr' undefined; assuming extern returning int
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(71,50): warning C4020: 'twiddleFactorLUT': too many actual parameters
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(76,11): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(140,23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(146,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(146,36): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(170,6): warning C4101: 'i': unreferenced local variable
+  tester_MAIN.c
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(18,19): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[8]'
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(18,19): warning C4024: 'dft': different types for formal and actual parameter 1
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(18,23): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[8]'
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(18,23): warning C4024: 'dft': different types for formal and actual parameter 2
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,20): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[8]'
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,20): warning C4024: 'ifft': different types for formal and actual parameter 1
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,26): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[8]'
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,26): warning C4024: 'ifft': different types for formal and actual parameter 2
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(14,10): warning C4101: 'z': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(15,9): warning C4101: 'y_mag': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(15,17): warning C4101: 'y_phase': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(14,14): warning C4101: 's': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(14,12): warning C4101: 'w': unreferenced local variable
+  Generating Code...
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(192): warning C4715: 'dft': not all control paths return a value
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(181): warning C4716: 'fastConv': must return a value
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(216): warning C4715: 'fft': not all control paths return a value
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(230): warning C4715: 'ifft': not all control paths return a value
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(203): warning C4715: 'idft': not all control paths return a value
   staticDSPLib.vcxproj -> C:\Users\PC\Desktop\Git Repos\staticDSPLib\x64\Debug\staticDSPLib.exe
