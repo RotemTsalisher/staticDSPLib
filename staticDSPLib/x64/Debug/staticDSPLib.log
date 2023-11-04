@@ -25,15 +25,12 @@ C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,20): wa
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,20): warning C4024: 'ifft': different types for formal and actual parameter 1
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,26): warning C4047: 'function': 'complex *' differs in levels of indirection from 'complex (*)[8]'
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(26,26): warning C4024: 'ifft': different types for formal and actual parameter 2
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(14,10): warning C4101: 'z': unreferenced local variable
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(15,9): warning C4101: 'y_mag': unreferenced local variable
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(15,17): warning C4101: 'y_phase': unreferenced local variable
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(14,14): warning C4101: 's': unreferenced local variable
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(14,12): warning C4101: 'w': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(14,8): warning C4101: 'y_mag': unreferenced local variable
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\tester_MAIN.c(15,8): warning C4101: 'y_phase': unreferenced local variable
   Generating Code...
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(192): warning C4715: 'dft': not all control paths return a value
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(181): warning C4716: 'fastConv': must return a value
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(192): warning C4715: 'dft': not all control paths return a value
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(216): warning C4715: 'fft': not all control paths return a value
-C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(230): warning C4715: 'ifft': not all control paths return a value
 C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(203): warning C4715: 'idft': not all control paths return a value
+C:\Users\PC\Desktop\Git Repos\staticDSPLib\staticDSPLib\DSPLib.c(230): warning C4715: 'ifft': not all control paths return a value
   staticDSPLib.vcxproj -> C:\Users\PC\Desktop\Git Repos\staticDSPLib\x64\Debug\staticDSPLib.exe

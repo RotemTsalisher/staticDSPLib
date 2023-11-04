@@ -50,9 +50,9 @@ inline float magnitude(complex num);
 
 inline float phase(complex num);
 
-float* phaseArray(complex* arr, int size);
+DSPsysStatus phaseArray(float yphase[], complex arr[], int size);
 
-float* magArray(complex* arr, int size);
+DSPsysStatus magArray(float ymag[], complex arr[], int size);
 
 int isPowerOfTwo(int N);
 

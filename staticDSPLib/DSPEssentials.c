@@ -2,31 +2,31 @@
 
 #include "DSPEssentials.h"
 
-float* magArray(complex* arr, int size)
+DSPsysStatus magArray(float ymag[], complex arr[], int size)
 {
-	float* out;
 	int i;
-	out = malloc(sizeof(float) * size);
+
+	if (size == 0 || arr == NULL) return EMPTY_SEQUENCE;
 
 	for (i = 0; i < size; i++)
 	{
-		out[i] = magnitude(arr[i]);
+		ymag[i] = magnitude(arr[i]);
 	}
 
-	return out;
+	return SUCCESS;
 }
-float* phaseArray(complex* arr, int size)
+DSPsysStatus phaseArray(float yphase[], complex arr[], int size)
 {
-	float* out;
 	int i;
-	out = malloc(sizeof(float) * size);
+
+	if (size == 0 || arr == NULL) return EMPTY_SEQUENCE;
 
 	for (i = 0; i < size; i++)
 	{
-		out[i] = phase(arr[i]);
+		yphase[i] = phase(arr[i]);
 	}
 
-	return out;
+	return SUCCESS;
 }
 complex cmplxMult(complex z, complex w)
 {
